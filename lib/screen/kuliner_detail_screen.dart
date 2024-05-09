@@ -59,16 +59,6 @@ class KulinerDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditKulinerScreen(),
-                        ),
-                      );
-                    },
-                    child: Text("Edit")),
-                ElevatedButton(
                     onPressed: () async{
                       var result = await kulinerController.deleteKuliner(kuliner.id.toString());
                       ScaffoldMessenger.of(context).showSnackBar(

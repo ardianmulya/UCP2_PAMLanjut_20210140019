@@ -23,6 +23,7 @@ class KulinerController{
         };
       } else {
         if (response.headers['content-type']!.contains('application/json')) {
+          print(response.body);
           var decodedJson = jsonDecode(response.body);
           return {
             'success': false,

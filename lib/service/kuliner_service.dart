@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class KulinerService {
 
-  final String baseUrl = 'http://192.168.224.122/api/';
+  final String baseUrl = 'http://192.168.224.122:8000/api/';
   final String endpoint = 'kuliner';
 
     Uri getUri(String path) {
