@@ -18,6 +18,21 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
 
     File? _image;
   final _imagePicker = ImagePicker();
+
+    Future<void> getImage() async {
+    final XFile? pickedFile =
+      await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(
+      () {
+        if (pickedFile != null) {
+          _image = File(pickedFile.path);
+        } else {
+          print("No image selected");
+        }
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
