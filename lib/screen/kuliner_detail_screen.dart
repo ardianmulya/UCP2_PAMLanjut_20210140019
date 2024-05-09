@@ -22,6 +22,17 @@ class KulinerDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Container(
+              height: 200, 
+              width: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(kuliner.foto), 
+                  fit: BoxFit.cover, 
+                ),
+              ),
+            ),
+            const SizedBox(height: 16.0),
             Text(
               "Nama Kuliner : " + kuliner.nama,
               style: const TextStyle(
@@ -47,14 +58,16 @@ class KulinerDetailScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                ElevatedButton(onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditKulinerScreen(),
-                    ),
-                  );
-                }, child: Text("Edit")),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditKulinerScreen(),
+                        ),
+                      );
+                    },
+                    child: Text("Edit")),
                 ElevatedButton(
                     onPressed: () {
                       kulinerController.deleteKuliner(kuliner.id.toString());
