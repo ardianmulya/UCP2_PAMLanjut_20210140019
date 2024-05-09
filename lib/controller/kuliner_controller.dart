@@ -93,4 +93,15 @@ class KulinerController{
       return {"success": false, "message": 'Terjadi kesalahan: $e'};
     }
   }
+
+  Future<Kuliner> getKulinerById(int id) async {
+    try {
+      List<dynamic> kulinerData = await kulinerService.getkulinerByid(id);
+      Kuliner kuliner = kulinerData.map((json) => Kuliner.fromMap(json)).first;
+      return kuliner;
+    } catch (e) {
+      print(e);
+      throw Exception('Gagal Mendapatkan data Kuliner');
+    }
+  }
 }
