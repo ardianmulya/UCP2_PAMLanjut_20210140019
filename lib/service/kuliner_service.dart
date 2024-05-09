@@ -44,4 +44,13 @@ class KulinerService {
       throw Exception('Tidak dapat mengambil data: ${response.reasonPhrase}');
     }
   }
+
+    Future<http.Response> deleteKuliner(String id) async {
+    return await http.delete(
+      getUri('$endpoint/$id'),
+      headers: {
+        "Accept": "application/json",
+      },
+    );
+  }
 }
