@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class KulinerDetailScreen extends StatefulWidget {
+class KulinerDetailScreen extends StatelessWidget {
   const KulinerDetailScreen({super.key});
 
-  @override
-  State<KulinerDetailScreen> createState() => _KulinerDetailScreenState();
-}
-
-class _KulinerDetailScreenState extends State<KulinerDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
