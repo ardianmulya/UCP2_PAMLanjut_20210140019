@@ -8,7 +8,8 @@ import 'package:ucp2_pam/screen/kuliner_screen.dart';
 import 'package:ucp2_pam/screen/maps_screen.dart';
 
 class EditKulinerScreen extends StatefulWidget {
-  const EditKulinerScreen({super.key});
+  final Kuliner kuliner;
+  const EditKulinerScreen({super.key, required this.kuliner});
 
   @override
   State<EditKulinerScreen> createState() => _EditKulinerScreenState();
@@ -57,14 +58,14 @@ class _EditKulinerScreenState extends State<EditKulinerScreen> {
                     controller: _namaController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Nama Makanan tidak boleh kosong';
+                        return 'Nama Kuliner tidak boleh kosong';
                       }
                       return null;
                     },
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
-                      hintText: 'Masukkan Nama Makanan',
-                      labelText: 'Nama Makanan',
+                      hintText: 'Masukkan Nama Kuliner',
+                      labelText: 'Nama Kuliner',
                     ),
                   ),
                 ),
