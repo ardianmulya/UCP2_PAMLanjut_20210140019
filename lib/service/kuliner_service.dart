@@ -53,7 +53,7 @@ class KulinerService {
       },
     );
   }
-    Future<http.Response> updatePerson(
+    Future<http.Response> updateKuliner(
       String id, Map<String, String> data, File? file) async {
     var request = http.MultipartRequest(
       'PUT',

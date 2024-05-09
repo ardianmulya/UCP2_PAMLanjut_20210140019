@@ -57,4 +57,40 @@ class KulinerController{
     Future<http.Response> deleteKuliner(String id) async {
     return await kulinerService.deleteKuliner(id);
   }
+
+  Future<Map<String, dynamic>> updateKuliner(Kuliner kuliner, File? file) async {
+    Map<String, String> data = {
+      "nama": kuliner.nama,
+      "lokasi": kuliner.lokasi,
+      "deskripsi": kuliner.deskripsi,
+    };
+
+    try {
+      var response =
+          await kulinerService.updateKuliner(kuliner.id.toString(), data, file);
+      if (response.statusCode == 200) {
+        return {
+          'success': true,
+          "message": "Data berhasil diperbarui",
+        };
+      } else {
+        if (response.headers['content-type']!.contains('application/json')) {
+          var decodedJson = jsonDecode(response.body);
+          return {
+            'success': false,
+            "message": decodedJson['message'] ?? 'Terjadi kesalahan',
+          };
+        }
+
+        var decodedJson = jsonDecode(response.body);
+        return {
+          'success': false,
+          'message': decodedJson['message'] ??
+              'Terjadi kesalahan saat memperbarui data'
+        };
+      }
+    } catch (e) {
+      return {"success": false, "message": 'Terjadi kesalahan: $e'};
+    }
+  }
 }
