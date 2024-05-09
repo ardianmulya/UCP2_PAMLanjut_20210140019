@@ -56,14 +56,14 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                   child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Nama Makanan tidak boleh kosong';
+                        return 'Nama Kuliner tidak boleh kosong';
                       }
                       return null;
                     },
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
-                      hintText: 'Masukkan Nama Makanan',
-                      labelText: 'Nama Makanan',
+                      hintText: 'Masukkan Nama Kuliner',
+                      labelText: 'Nama Kuliner',
                     ),
                   ),
                 ),
@@ -127,7 +127,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                     },
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
-                      hintText: 'Masukkan Deskripsi Makanan',
+                      hintText: 'Masukkan Deskripsi Kuliner Seperti Harga atau Rasa',
                       labelText: 'Deskripsi',
                     ),
                   ),
