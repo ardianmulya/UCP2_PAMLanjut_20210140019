@@ -50,6 +50,30 @@ class _MapsScreenState extends State<MapsScreen> {
       appBar: AppBar(
         title: const Text("Pilih Lokasi"),
       ),
+      body: GoogleMap(
+        myLocationEnabled: true,
+        myLocationButtonEnabled: true,
+        buildingsEnabled: true,
+        trafficEnabled: true,
+        compassEnabled: true,
+        onMapCreated: onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: lastMapPosition ?? const LatLng(0.0, 0.0),
+          zoom: 15.0,
+        ),
+        markers: {
+          if (lastMapPosition != null)
+            Marker(
+              markerId: const MarkerId('currentLocation'),
+              position: lastMapPosition!,
+            )
+        },
+        onTap: (position) {
+          setState(() {
+            lastMapPosition = position;
+          });
+        },
+      ),
     );
   }
 }
