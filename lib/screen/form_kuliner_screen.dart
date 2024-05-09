@@ -16,7 +16,6 @@ class FormKulinerScreen extends StatefulWidget {
 class _FormKulinerScreenState extends State<FormKulinerScreen> {
   final _formKey = GlobalKey<FormState>();
   final _namaController = TextEditingController();
-  final _lokasiController = TextEditingController();
   final _deskripsiController = TextEditingController();
 
     File? _image;
@@ -154,7 +153,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                         var result = await KulinerController().addKuliner(
                           Kuliner(
                               nama: _namaController.text,
-                              lokasi: _lokasiController.text,
+                              lokasi: _alamat ?? '',
                               deskripsi:_deskripsiController.text,
                               foto: _image!.path),
                           _image,
