@@ -8,8 +8,14 @@ class FormKulinerScreen extends StatefulWidget {
 }
 
 class _FormKulinerScreenState extends State<FormKulinerScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _namaController = TextEditingController();
+  final _lokasiController = TextEditingController();
+  final _deskripsiController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+
+    );
   }
 }
