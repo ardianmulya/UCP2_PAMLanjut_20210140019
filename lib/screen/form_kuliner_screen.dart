@@ -20,6 +20,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
 
     File? _image;
   final _imagePicker = ImagePicker();
+    String? _alamat;
 
     Future<void> getImage() async {
     final XFile? pickedFile =
