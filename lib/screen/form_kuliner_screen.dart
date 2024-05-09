@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ucp2_pam/controller/kuliner_controller.dart';
 import 'package:ucp2_pam/model/kuliner.dart';
+import 'package:ucp2_pam/screen/kuliner_screen.dart';
 import 'package:ucp2_pam/screen/maps_screen.dart';
 
 class FormKulinerScreen extends StatefulWidget {
@@ -18,13 +19,13 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
   final _namaController = TextEditingController();
   final _deskripsiController = TextEditingController();
 
-    File? _image;
+  File? _image;
   final _imagePicker = ImagePicker();
-    String? _alamat;
+  String? _alamat;
 
-    Future<void> getImage() async {
+  Future<void> getImage() async {
     final XFile? pickedFile =
-      await _imagePicker.pickImage(source: ImageSource.gallery);
+        await _imagePicker.pickImage(source: ImageSource.gallery);
 
     setState(
       () {
@@ -36,6 +37,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,54 +67,54 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                     ),
                   ),
                 ),
-                  Container(
-                    margin: const EdgeInsets.all(10),
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _alamat == null
-                            ? const SizedBox(
-                                width: double.infinity,
-                                child: Text('Alamat'),
-                              )
-                            : Text('$_alamat'),
-                        _alamat == null
-                            ? TextButton(
-                                onPressed: () async {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MapsScreen(
-                                        onLocationSelected: (selectedAddress) {
-                                          setState(() {
-                                            _alamat = selectedAddress;
-                                          });
-                                        },
-                                      ),
+                Container(
+                  margin: const EdgeInsets.all(10),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _alamat == null
+                          ? const SizedBox(
+                              width: double.infinity,
+                              child: Text('Alamat'),
+                            )
+                          : Text('$_alamat'),
+                      _alamat == null
+                          ? TextButton(
+                              onPressed: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MapsScreen(
+                                      onLocationSelected: (selectedAddress) {
+                                        setState(() {
+                                          _alamat = selectedAddress;
+                                        });
+                                      },
                                     ),
-                                  );
-                                },
-                                child: const Text("Pilih Alamat"))
-                            : TextButton(
-                                onPressed: () async {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MapsScreen(
-                                        onLocationSelected: (selectedAddress) {
-                                          setState(() {
-                                            _alamat = selectedAddress;
-                                          });
-                                        },
-                                      ),
+                                  ),
+                                );
+                              },
+                              child: const Text("Pilih Alamat"))
+                          : TextButton(
+                              onPressed: () async {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MapsScreen(
+                                      onLocationSelected: (selectedAddress) {
+                                        setState(() {
+                                          _alamat = selectedAddress;
+                                        });
+                                      },
                                     ),
-                                  );
-                                },
-                                child: const Text('Ubah Alamat'))
-                      ],
-                    ),
+                                  ),
+                                );
+                              },
+                              child: const Text('Ubah Alamat'))
+                    ],
                   ),
+                ),
                 Container(
                   margin: const EdgeInsets.all(10),
                   width: double.infinity,
@@ -154,7 +156,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                           Kuliner(
                               nama: _namaController.text,
                               lokasi: _alamat ?? '',
-                              deskripsi:_deskripsiController.text,
+                              deskripsi: _deskripsiController.text,
                               foto: _image!.path),
                           _image,
                         );
@@ -166,6 +168,12 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                             ),
                           ),
                         );
+                        Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const KulinerScreen(),
+                            ),
+                            (route) => false);
                       }
                     },
                     child: Text("Submit"))
