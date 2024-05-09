@@ -58,6 +58,7 @@ class KulinerDetailScreen extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {
                       kulinerController.deleteKuliner(kuliner.id.toString());
+                      Navigator.pop(context);
                     },
                     child: Text("Hapus"))
               ],

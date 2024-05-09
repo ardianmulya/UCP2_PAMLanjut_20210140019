@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ucp2_pam/screen/kuliner_detail_screen.dart';
 import 'package:ucp2_pam/screen/kuliner_screen.dart';
 
 void main() {
