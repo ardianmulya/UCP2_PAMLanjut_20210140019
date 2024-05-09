@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:http/http.dart' as http;
 import 'package:ucp2_pam/model/kuliner.dart';
 import 'package:ucp2_pam/service/kuliner_service.dart';
 
@@ -51,5 +52,9 @@ class KulinerController{
       print(e);
       throw Exception('Gagal Mendapatkan data Kuliner');
     }
+  }
+
+    Future<http.Response> deleteKuliner(String id) async {
+    return await kulinerService.deleteKuliner(id);
   }
 }
