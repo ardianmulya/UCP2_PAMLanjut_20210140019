@@ -23,12 +23,12 @@ class KulinerDetailScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              height: 200, 
+              height: 200,
               width: double.infinity,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(kuliner.foto), 
-                  fit: BoxFit.cover, 
+                  image: NetworkImage(kuliner.foto),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -69,8 +69,15 @@ class KulinerDetailScreen extends StatelessWidget {
                     },
                     child: Text("Edit")),
                 ElevatedButton(
-                    onPressed: () {
-                      kulinerController.deleteKuliner(kuliner.id.toString());
+                    onPressed: () async{
+                      var result = await kulinerController.deleteKuliner(kuliner.id.toString());
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            result.body,
+                          ),
+                        ),
+                      );
                       Navigator.pop(context);
                     },
                     child: Text("Hapus"))
