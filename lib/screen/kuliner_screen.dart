@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ucp2_pam/controller/kuliner_controller.dart';
 import 'package:ucp2_pam/model/kuliner.dart';
 import 'package:ucp2_pam/screen/form_kuliner_screen.dart';
+import 'package:ucp2_pam/screen/kuliner_detail_screen.dart';
 
 class KulinerScreen extends StatefulWidget {
   const KulinerScreen({super.key});
@@ -22,10 +23,10 @@ class _KulinerScreenState extends State<KulinerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Daftar Kuliner"),
-      ),
-       body: FutureBuilder<List<Kuliner>>(
+        appBar: AppBar(
+          title: const Text("Daftar Kuliner"),
+        ),
+        body: FutureBuilder<List<Kuliner>>(
           future: _controller.getKuliner(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -42,7 +43,16 @@ class _KulinerScreenState extends State<KulinerScreen> {
                 itemBuilder: (context, index) {
                   Kuliner kuliner = snapshot.data![index];
                   return ListTile(
-                    onTap: (){},
+                    onTap: () {
+                      Kuliner kuliner = snapshot.data![index];
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              KulinerDetailScreen(kuliner: kuliner),
+                        ),
+                      );
+                    },
                     title: Text(kuliner.nama),
                     subtitle: Text(kuliner.lokasi),
                     leading: CircleAvatar(
@@ -56,11 +66,12 @@ class _KulinerScreenState extends State<KulinerScreen> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const FormKulinerScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const FormKulinerScreen()));
           },
           child: const Icon(Icons.add),
-        )
-    );
+        ));
   }
 }
