@@ -53,6 +53,13 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
             }
           },
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const FormKulinerScreen()));
+          },
+          child: const Icon(Icons.add),
+        )
     );
   }
 }
