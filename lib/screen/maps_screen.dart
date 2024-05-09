@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapsScreen extends StatefulWidget {
-    final Function(String) onLocationSelected;
+  final Function(String) onLocationSelected;
   const MapsScreen({super.key, required this.onLocationSelected});
 
   @override
@@ -13,14 +14,14 @@ class MapsScreen extends StatefulWidget {
 class _MapsScreenState extends State<MapsScreen> {
   late GoogleMapController mapController;
   LatLng? lastMapPosition;
-  
+
   @override
   void initState() {
     super.initState();
     getCurrentLocation();
   }
 
-    Future<void> getCurrentLocation() async {
+  Future<void> getCurrentLocation() async {
     await Geolocator.requestPermission()
         .then((value) {})
         .onError((error, stackTrace) async {
@@ -35,7 +36,7 @@ class _MapsScreenState extends State<MapsScreen> {
     mapController.animateCamera(CameraUpdate.newLatLng(lastMapPosition!));
   }
 
-    void onMapCreated(GoogleMapController controller) {
+  void onMapCreated(GoogleMapController controller) {
     mapController = controller;
     if (lastMapPosition != null) {
       setState(() {
@@ -73,6 +74,34 @@ class _MapsScreenState extends State<MapsScreen> {
             lastMapPosition = position;
           });
         },
+      ),
+      floatingActionButton: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: () async {
+              if (lastMapPosition != null) {
+                List<Placemark> placemarks = await placemarkFromCoordinates(
+                  lastMapPosition!.latitude,
+                  lastMapPosition!.longitude,
+                );
+
+                if (placemarks.isNotEmpty) {
+                  Placemark place = placemarks[0];
+                  String fullAddress =
+                      "${place.name},${place.street},${place.subLocality},${place.locality},${place.postalCode},${place.country}";
+                  widget.onLocationSelected(fullAddress);
+                } else {
+                  widget.onLocationSelected("No address found");
+                }
+
+                Navigator.pop(context);
+              }
+            },
+            child: const Text('Submit'),
+          )
+        ],
       ),
     );
   }
