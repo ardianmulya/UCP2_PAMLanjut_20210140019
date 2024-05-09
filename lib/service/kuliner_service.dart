@@ -68,4 +68,20 @@ class KulinerService {
 
     return await http.Response.fromStream(await request.send());
   }
+    Future<List<dynamic>> getkulinerByid(int id) async {
+    var response = await http.get(
+        getUri(
+          '$endpoint/$id',
+        ),
+        headers: {
+          "Accept": "application/json",
+        });
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> decodeResponse = json.decode(response.body);
+      return decodeResponse['kuliner'];
+    } else {
+      throw Exception('Failed to load Kuliner : ${response.reasonPhrase}');
+    }
+  }
+
 }
