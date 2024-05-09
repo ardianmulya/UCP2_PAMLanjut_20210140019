@@ -44,7 +44,6 @@ class _KulinerScreenState extends State<KulinerScreen> {
                   Kuliner kuliner = snapshot.data![index];
                   return ListTile(
                     onTap: () {
-                      Kuliner kuliner = snapshot.data![index];
                       Navigator.push(
                         context,
                         MaterialPageRoute(
