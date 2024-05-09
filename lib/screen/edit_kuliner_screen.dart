@@ -54,6 +54,7 @@ class _EditKulinerScreenState extends State<EditKulinerScreen> {
                   margin: const EdgeInsets.all(10),
                   width: double.infinity,
                   child: TextFormField(
+                    controller: _namaController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Nama Makanan tidak boleh kosong';
@@ -119,6 +120,7 @@ class _EditKulinerScreenState extends State<EditKulinerScreen> {
                   margin: const EdgeInsets.all(10),
                   width: double.infinity,
                   child: TextFormField(
+                    controller: _deskripsiController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Deskripsi tidak boleh kosong';
