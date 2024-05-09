@@ -35,6 +35,15 @@ class _MapsScreenState extends State<MapsScreen> {
     mapController.animateCamera(CameraUpdate.newLatLng(lastMapPosition!));
   }
 
+    void onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+    if (lastMapPosition != null) {
+      setState(() {
+        mapController.animateCamera(CameraUpdate.newLatLng(lastMapPosition!));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
