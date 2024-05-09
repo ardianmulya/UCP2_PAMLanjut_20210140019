@@ -53,4 +53,19 @@ class KulinerService {
       },
     );
   }
+    Future<http.Response> updatePerson(
+      String id, Map<String, String> data, File? file) async {
+    var request = http.MultipartRequest(
+      'PUT',
+      getUri('$endpoint/$id'),
+    )
+      ..fields.addAll(data)
+      ..headers['Content-Type'] = 'application/json';
+
+    if (file != null) {
+      request.files.add(await http.MultipartFile.fromPath('gambar', file.path));
+    }
+
+    return await http.Response.fromStream(await request.send());
+  }
 }
