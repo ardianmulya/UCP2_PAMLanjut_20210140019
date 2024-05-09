@@ -11,7 +11,9 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
+      appBar: AppBar(
+        title: const Text("Daftar Kuliner"),
+      ),
     );
   }
 }
