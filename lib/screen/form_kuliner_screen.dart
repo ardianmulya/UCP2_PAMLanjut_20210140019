@@ -9,14 +9,20 @@ class FormKulinerScreen extends StatefulWidget {
 }
 
 class _FormKulinerScreenState extends State<FormKulinerScreen> {
-    final KulinerController _controller = KulinerController();
+  final KulinerController _controller = KulinerController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.getKuliner();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Daftar Kuliner"),
       ),
-      
     );
   }
 }
