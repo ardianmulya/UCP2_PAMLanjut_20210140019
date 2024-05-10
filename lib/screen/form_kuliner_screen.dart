@@ -74,10 +74,14 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      SizedBox(
+                              width: double.infinity,
+                              child: Text('Lokasi'),
+                            ),
                       _alamat == null
                           ? const SizedBox(
                               width: double.infinity,
-                              child: Text('Alamat'),
+                              child: Text('Lokasi'),
                             )
                           : Text('$_alamat'),
                       _alamat == null
@@ -96,7 +100,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                                   ),
                                 );
                               },
-                              child: const Text("Pilih Alamat"))
+                              child: const Text("Pilih Lokasi"))
                           : TextButton(
                               onPressed: () async {
                                 Navigator.push(
