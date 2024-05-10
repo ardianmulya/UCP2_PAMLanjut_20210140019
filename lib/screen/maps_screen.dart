@@ -90,7 +90,7 @@ class _MapsScreenState extends State<MapsScreen> {
                 if (placemarks.isNotEmpty) {
                   Placemark place = placemarks[0];
                   String fullAddress =
-                      "${place.name},${place.street},${place.subLocality},${place.locality},${place.postalCode},${place.country}";
+                      "${place.name},${place.street},${place.locality},";
                   widget.onLocationSelected(fullAddress);
                 } else {
                   widget.onLocationSelected("No address found");
