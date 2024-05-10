@@ -26,7 +26,7 @@ class _KulinerScreenState extends State<KulinerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Daftar Kuliner"),
+          title: const Text("Daftar Kuliner Nusantara"),
         ),
         body: FutureBuilder<List<Kuliner>>(
           future: _controller.getKuliner(),
