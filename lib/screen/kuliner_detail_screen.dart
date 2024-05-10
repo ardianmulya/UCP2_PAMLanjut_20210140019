@@ -59,18 +59,47 @@ class KulinerDetailScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                    onPressed: () async{
-                      var result = await kulinerController.deleteKuliner(kuliner.id.toString());
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
+                  onPressed: () async {
+                    // Tampilkan dialog konfirmasi
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text("Konfirmasi"),
                           content: Text(
-                            result.body,
-                          ),
-                        ),
-                      );
-                      Navigator.pop(context);
-                    },
-                    child: Text("Hapus"))
+                              "Apakah Anda yakin ingin menghapus kuliner ini?"),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text("Batal"),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                // Hapus kuliner jika pengguna menekan "Hapus"
+                                var result = await kulinerController
+                                    .deleteKuliner(kuliner.id.toString());
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      result.body,
+                                    ),
+                                  ),
+                                );
+                                Navigator.pop(context); // Tutup dialog
+                                Navigator.pop(
+                                    context); // Kembali ke layar sebelumnya
+                              },
+                              child: Text("Hapus"),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Text("Hapus"),
+                )
               ],
             )
           ],
