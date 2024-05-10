@@ -38,6 +38,14 @@ class _EditKulinerScreenState extends State<EditKulinerScreen> {
       },
     );
   }
+  @override
+void initState() {
+  super.initState();
+  _namaController.text = widget.kuliner.nama;
+  _deskripsiController.text = widget.kuliner.deskripsi;
+  _alamat = widget.kuliner.lokasi;
+}
+
 
   @override
   Widget build(BuildContext context) {
