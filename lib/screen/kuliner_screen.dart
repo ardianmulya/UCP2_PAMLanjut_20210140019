@@ -45,7 +45,7 @@ class _KulinerScreenState extends State<KulinerScreen> {
                 itemBuilder: (context, index) {
                   Kuliner kuliner = snapshot.data![index];
                   return Container(
-                    height: 150,
+                    height: 130,
                     child: Card(
                       elevation: 5,
                       child: Column(
