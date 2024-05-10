@@ -129,7 +129,7 @@ class _FormKulinerScreenState extends State<FormKulinerScreen> {
                     },
                     keyboardType: TextInputType.name,
                     decoration: const InputDecoration(
-                      hintText: 'Masukkan Deskripsi Kuliner Seperti Harga atau Rasa',
+                      hintText: 'Deskripsi Kuliner Seperti Harga/Rasa',
                       labelText: 'Deskripsi',
                     ),
                   ),
