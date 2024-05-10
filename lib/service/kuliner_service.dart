@@ -63,7 +63,7 @@ class KulinerService {
       ..headers['Content-Type'] = 'application/json';
 
     if (file != null) {
-      request.files.add(await http.MultipartFile.fromPath('gambar', file.path));
+      request.files.add(await http.MultipartFile.fromPath('foto', file.path));
     }
 
     return await http.Response.fromStream(await request.send());
